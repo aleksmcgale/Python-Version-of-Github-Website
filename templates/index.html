@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/index.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Aleksandra McGale</title>
+</head>
+<body>
+
+
+
+
+    <div class="header-tron">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6"><h1 class="ttxt">
+                    Aleksandra McGale
+                    </h1>
+                    <p>
+                        Future UofT Grad - Alpha Phi Alumnae -</p>
+                    <a href="../static/AleksandraMcGaleResumeJan2019-2.pdf"  class="abtn" rel="noopener noreferrer" target="_blank">Resume</a>
+                </div>
+                <div class="col-md-6">
+                    <div class="window">
+                        <div class="window-header">
+                            <div class="action-buttons">
+                            </div>
+                            <select class="language">
+                                <option value="javascript" selected>Python</option>
+                                <option value="markup">CSS</option>
+                                <option value="sql">SQL</option>
+                            </select>
+                        </div>
+                        <div class="window-body">
+                            <textarea class="code-input">
+    from flask import Flask, render_template, request
+    from flask_mail import Message, Mail
+
+
+    app = Flask(__name__)
+    mail = Mail(app)
+
+    @app.route('/', methods=['POST', 'GET'])
+    def index():
+        if request.method == 'GET':
+            return render_template('index.html')
+
+        if request.method == 'POST':
+            name = request.form['name']
+            email = request.form['email']
+            text = request.form['text']
+
+            msg = Message(name, sender=email, recipients=["aleksandra.mcgale@mail.utoronto.ca"])
+            msg.body = text
+            mail.send(msg)
+            result ="Sent!"
+
+            return render_template('index.html', result=result)
+                            </textarea>
+                            <pre class="code-output">
+                                <code class="language-javascript">
+
+                                </code>
+                            </pre>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container about-txt">
+        <div class="row">
+            <div class="col-12 tt">
+                <h1>From School Projects to Hobbies</h1>
+                <h5></h5>
+
+            </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Coding and IT</h5>
+                <p class="card-text">Starting coding in 2017, starting with Python and moving towards Java. Over the years I have completed numerous Computer Science courses at UofT and participated in a few hackathons. In the future I would like to apply my Python skills towards creating AI based applications, and discover techniques for AWS.</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Internships and Work</h5>
+                <p class="card-text">Have completed internships/work studies in Front-End Development and Pyschology Research. Will be working in IT at CI Investments during the Summer of 2019. Looking for a work placement working in full-stack or AI(specifically Natual Language Processing) developmt.</p>
+
+              </div>
+            </div>
+          </div>
+            <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Other</h5>
+                <p class="card-text">From exploring Breweries around Toronto to rockclimbing, the past four years at university has provided myself with multiple opportunities to discover new activities and cultures while studying in one of the most career focused cities in the world.</p>
+
+              </div>
+            </div>
+          </div>
+            <div class="col-12">
+                <form class="file_Upload" method = "POST" action="{{ url_for('index') }}">
+                <input class="abtn" type="submit" id="searchButton" value="See Projects">
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container"  id="hidden">
+        <div class="row" id="popUp">
+            {% if result %}
+                {% for r in result %}
+                    <div class="col-sm">
+
+                        <div class="card" style="width: 18rem;">
+
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ r['name'] }}</h5>
+                                     <p class="card-text">{{ r['description'] }}</p>
+                                    <p class="card-text">Language: {{ r['language'] }}</p>
+                                        <p class="card-text">Last Updated: {{ r['update'] }}</p>
+                                    <a href="{{ r['link'] }}" target="_blank" class="abtn-three" >More Information</a>
+
+                                </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            {% endif %}
+
+
+        </div>
+
+    </div>
+    <div class="learn-more">
+        <div class="container ">
+            <div class="row">
+                <div class="col-12 more">
+                    <h1>Want to know more?</h1>
+                <a href="../static/AleksandraMcGaleResumeJan2019-2.pdf" target="_blank" class="abtn-two">Resume</a>
+                    <div class="social"><a class="font fab fa-facebook-square" href="https://www.facebook.com/mcgale.aleks?ref=bookmarks" ></a><a class="font fab fa-github-square" href="https://github.com/aleksmcgale"></a><a class="font fas fa-envelope" href="aleksandramcgale@gmail.com"></a><a class="font fab fa-linkedin" href="https://www.linkedin.com/in/aleksandra-mcgale-634060136/"></a></div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    <div class="footer">
+        <p>Copyright @McGale April 2019</p>
+    </div>
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <script>
+        $(function() {
+            $('#searchButton').click(function() {
+
+                    var input = '<div class = "col-sm">' +
+                        '<div class="card" style="width: 18rem;">\n' +
+                        '  <img src="..." class="card-img-top" alt="...">\n' +
+                        '  <div class="card-body">\n' +
+                        '    <h5 class="card-title">Card title</h5>\n' +
+                        '    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>\n' +
+                        '    <a href="#" class="btn btn-outline-dark">More Information</a>\n' +
+                        '  </div>\n' +
+                        '</div>' +
+                        '</div>';
+                    var newDiv = $(input);
+                    // newDiv.style.background = "#000";
+                    $('#popUp').append(newDiv);
+
+            });
+        });
+    </script>
+
+
+</body>
+</html>
